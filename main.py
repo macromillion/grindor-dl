@@ -40,5 +40,5 @@ if not checkDir:
     try:
         os.chdir(str(installDir))
     except OSError:
-        print(err + '[ERR] Directory could still not be identified, please restart the installation process!' + res)
+        print(error + '[ERR] Directory could still not be identified, please restart the installation process!' + res)
         clean()
