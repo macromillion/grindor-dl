@@ -5,15 +5,24 @@ from colored import fg, bg, attr
 from os import system
 import platform
 
-# Configuration
+# Color Configuration
 error = fg('#FF0000')
 good = fg('#00FF00')
 warn = fg('#FFFF00')
 res = attr('reset')
 
 def clean():
+    print(warn + '[WRN] Installation aborted...' + res)
     print('[INS] Cleaning installation...')
     os.chdir('.')
+
+# Check for an installation of BepInEx
+def checkBepinex(install):
+    try:
+        os.chdir(f'{install}\BepInEx')
+    except OSError:
+        print('[INS] Active BepInEx install located...')
+        bepActive = True
 
 # Preprint casting
 checkDir = True
@@ -29,7 +38,7 @@ elif platform.system() == 'Darwin':
 print('[INS] Checking working directory... ' + good + 'OK' + res)
 
 try:
-    os.chdir(f'C:\Program Files (x86)\Steam\steamapps\common\Valheim')
+    os.chdir('C:\Program Files (x86)\Steam\steamapps\common\Valheim')
 except OSError:
     print(warn + '[WRN] Directory could not be found automatically. Please paste your Valheim install directory!' + res)
     checkDir = False
